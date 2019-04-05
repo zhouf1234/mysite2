@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url "add_teacher" %}" method="post">
+    {% csrf_token %}
+    <label>老师姓名<input type="text" name="tname"></label>
+    <label for="class_id">授课班级</label>
+    <select name="cid" id="class_id" multiple>
+        {% for class in class_list %}
+            <option value="{{ class.id }}">{{ class.cname }}</option>
+        {% endfor %}
+    </select>
+    <p><input type="submit" value="提交"></p>
+</form>
+</body>
+</html>

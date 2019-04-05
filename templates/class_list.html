@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <a href="{% url "add_class" %}">添加班级</a>
+        <thead>
+            <th>#</th>
+            <th>班级id</th>
+            <th>班级名称</th>
+            <th>开学日期</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+            {% for class in class_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ class.id }}</td>
+                    <td>{{ class.cname }}</td>
+                    <td>{{ class.first_day|date:"Y-m-d"}}</td>
+                    <td>
+                         <a href="{% url "delete_list" %}?class_id={{ class.id }}">删除</a>
+                        {# <a href="{% url "edit_class" %}?class_id={{ class.id }}">编辑</a>#}
+                        <a href="{% url "edit_class" class.id %}">编辑</a>
+                     </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

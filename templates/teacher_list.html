@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>老师Title</title>
+</head>
+<body>
+    <table border="1">
+        <a href="{% url 'add_teacher' %}">添加新老师</a>
+        <thead>
+            <th>#</th>
+            <th>老师id</th>
+            <th>老师名称</th>
+            <th>授课班级</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+            {% for teacher in teacher_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ teacher.id }}</td>
+                    <td>{{ teacher.tname }}</td>
+                    <td>
+                        {% for class in teacher.cid.all %}
+                            {{ class.cname }}
+                        {% endfor %}
+
+                    </td>
+                    <td>
+                        <a href="{% url 'delete_teacher' teacher.id%}">删除</a>
+                        <a href="{% url 'edit_teacher' teacher.id%}">编辑</a>
+                     </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

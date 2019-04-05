@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <table border="1">
+        {% for class in class_list %}
+            <tr>
+                <td>{{ class.id }}</td>
+                <td>{{ class.cname }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

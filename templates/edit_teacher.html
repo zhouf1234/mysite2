@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title老师信息修改</title>
+</head>
+<body>
+<form action="{% url 'edit_teacher' teacher.id %}" method="post">
+    {% csrf_token %}
+
+    <p><input type="text" name="id" value="{{teacher.id}}" style="display:none"></p>
+    <p>老师姓名<input type="text" name="tname" value="{{ teacher.tname }}"></p>
+    <label for="class_id">授课班级</label>
+    <select name="cid" id="class_id" multiple>
+        {% for class in class_list %}
+            {% if class in teacher.cid.all %}
+                <option selected value="{{ class.id }}">{{ class.cname }}</option>
+            {% else %}
+                <option value="{{ class.id }}">{{ class.cname }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <p><input type="submit" value="提交"></p>
+
+</form>
+</body>
+</html>
